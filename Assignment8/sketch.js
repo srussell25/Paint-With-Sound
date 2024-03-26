@@ -15,15 +15,15 @@ let colors = [
   '#FFFFFF', // White
   '#000000'  // Black
 ];
-let selectedColor = colors[0]; // Initial selected color
+let selectedColor = colors[0]; 
 let squareSize = 35;
 let isDrawing = false;
 let prevX, prevY;
 
 function setup() {
-  createCanvas(700, 500); // Main canvas wider
-  background(255); // Set background to white
-  drawColorPalette(); // Drawing the color palette on the main canvas
+  createCanvas(700, 500); 
+  background(255); //white
+  drawColorPalette(); 
   
   Tone.start();
   Tone.Transport.bpm.value = 205;
@@ -105,7 +105,7 @@ function clearCanvas() {
   fill(255);
   rect(50, 0, width - 50, height);
 
-  sequence1.start();
+  // sequence1.start();
 
   square.triggerAttackRelease("B2", 0.8);
 }
