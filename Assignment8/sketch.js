@@ -59,14 +59,13 @@ function setup() {
 }
 
 function draw() {
-  if (isDrawing && mouseX > 50) { // Ensure drawing only on the main canvas
-    strokeWeight(5); // Thickness of the line
+  if (isDrawing && mouseX > 50) {
+    strokeWeight(5); 
     stroke(color(selectedColor));
     line(prevX, prevY, mouseX, mouseY);
     prevX = mouseX;
     prevY = mouseY;
   } else {
-    // Draw instruction text when not drawing
     fill(0);
     textSize(20);
     textAlign(CENTER, CENTER);
@@ -103,12 +102,11 @@ function mouseReleased() {
 }
 
 function clearCanvas() {
-  // Clear only the drawing area
   fill(255);
   rect(50, 0, width - 50, height);
-  // Start the sequence again
+
   sequence1.start();
-  // Play the "B2" note
+
   square.triggerAttackRelease("B2", 0.8);
 }
 
@@ -116,6 +114,5 @@ function fillCanvas() {
   // Fill the entire canvas with the selected color
   fill(selectedColor);
   rect(50, 0, width - 50, height);
-  // Play the "C3" note
   square.triggerAttackRelease("C3", 0.8);
 }
