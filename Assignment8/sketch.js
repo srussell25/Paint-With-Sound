@@ -37,6 +37,9 @@ function setup() {
   fillButton.position(70, height + 20);
   fillButton.mousePressed(fillCanvas);
 
+  let startButton = createButton('Start Drawing');
+  startButton.position(130, height + 20);
+  startButton.mousePressed(startCanvas);
 
   square = new Tone.Synth({
     oscillator: {
@@ -69,7 +72,7 @@ function draw() {
     fill(0);
     textSize(20);
     textAlign(CENTER, CENTER);
-    text('Click for paint and sound!', width * (3/5), height * (3/5));
+    text('Click Start Drawing first.', width * (3/5), height * (3/5));
   }
 }
 
@@ -80,13 +83,6 @@ function drawColorPalette() {
   }
 }
 
-function mouseClicked() {
-  if (mouseX > 10 && mouseX < squareSize + 10 && mouseY > 0 && mouseY < colors.length * squareSize) {
-    let index = Math.floor(mouseY / squareSize);
-    selectedColor = colors[index];
-  }
-}
-
 function mousePressed() {
   if (mouseX > 50 && mouseX < width && mouseY > 0 && mouseY < height) { // Ensure drawing only on the main canvas
     isDrawing = true;
@@ -94,8 +90,13 @@ function mousePressed() {
     prevY = mouseY;
     sequence1.start();
   }
+  
+  if (mouseX > 10 && mouseX < squareSize + 10 && mouseY > 0 && mouseY < colors.length * squareSize) {
+    let index = Math.floor(mouseY / squareSize);
+    selectedColor = colors[index];
+  }
 }
-
+//
 function mouseReleased() {
   isDrawing = false;
   sequence1.stop();
@@ -105,8 +106,6 @@ function clearCanvas() {
   fill(255);
   rect(50, 0, width - 50, height);
 
-  // sequence1.start();
-
   square.triggerAttackRelease("B2", 0.8);
 }
 
@@ -115,4 +114,10 @@ function fillCanvas() {
   fill(selectedColor);
   rect(50, 0, width - 50, height);
   square.triggerAttackRelease("C3", 0.8);
+}
+
+function startCanvas(){
+  fill(255);
+  rect(50, 0, width - 50, height);
+  square.triggerAttackRelease("A2", 0.8);
 }
